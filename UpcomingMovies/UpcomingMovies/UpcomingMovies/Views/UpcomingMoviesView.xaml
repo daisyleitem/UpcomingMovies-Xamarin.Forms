@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="UpcomingMovies.Views.UpcomingMoviesView">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Orientation="Vertical" >
+
+
+                <ListView 
+                    x:Name="lvMovies" 
+                    VerticalScrollBarVisibility="Always" 
+                    SeparatorVisibility="Default"  
+                    HasUnevenRows="true"
+                    ItemsSource="{Binding MoviesList}">
+
+                    <ListView.Header>
+                        <StackLayout Orientation="Horizontal">
+                            <Button Text="Get More" Command="{Binding GetMoreUpcomingMovies}" HorizontalOptions="Fill"/>
+                        </StackLayout>
+                    </ListView.Header>
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal" Padding="5" >
+
+                                    <Image Source="{Binding Poster_path_Img}" />
+                                    
+                                    <StackLayout HorizontalOptions="StartAndExpand">
+                                        
+                                        <Label Text="Title:" TextColor="Black"/>
+                                        <Label Text="{Binding Title}" TextColor="Black"/>
+
+
+                                        <Label Text="Genres:" TextColor="Black"/>
+                                        <ListView x:Name="lvGenre"  ItemsSource="{Binding Genres}">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <ViewCell>
+                                                        <StackLayout Orientation="Vertical" Padding="5">
+
+                                                            <Label Text="{Binding Name}" TextColor="Gray"/>
+
+                                                        </StackLayout>
+                                                    </ViewCell>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+
+                                        <Label Text="Release Date:" TextColor="Black"/>
+                                        <Label Text="{Binding Release_date}" TextColor="Black"/>
+                                    </StackLayout>
+
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                    <ListView.Footer>
+                        <StackLayout Orientation="Horizontal">
+                            <Button Text="Get More" Command="{Binding GetMoreUpcomingMovies}" HorizontalOptions="Fill"/>
+                        </StackLayout>
+
+                    </ListView.Footer>
+
+                </ListView>
+
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
